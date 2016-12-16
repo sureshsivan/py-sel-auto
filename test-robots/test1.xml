@@ -1,0 +1,15 @@
+<automation url="google.com">
+    <page wait="2">
+        <action type="text" do="type" selector="#lst-ib">
+            <value>summa</value>
+            <!--<selector></selector>-->
+            <!--<type>text</type>-->
+            <!--<do></do>-->
+        </action>
+        <action type="button" do="click" selector="#gbqfbb">
+            <!--<selector></selector>-->
+            <!--<type>text</type>-->
+            <!--<do></do>-->
+        </action>
+    </page>
+</automation>

@@ -11,7 +11,7 @@ import csv
 import time
 
 # driver = webdriver.Firefox()
-driver = webdriver.Chrome()
+driver = webdriver.Chrome(executable_path="C:\mydev\programs\selenium\chromedriver\chromedriver")
 
 wait5 = WebDriverWait(driver, 5)
 
@@ -53,12 +53,16 @@ def execute_keystroke(selector, value, is_optional):
 ##############################################################################################
 def process_actin_tag(action_tag):
     is_optional = False
-    css_selector = action_tag.find("cssSelector").text
-    type = action_tag.find("type").text
-    do = action_tag.find("do").text
+    # css_selector = action_tag.find("selector").text
+    # type = action_tag.find("type").text
+    # do = action_tag.find("do").text
 
-    if action_tag.find("optional").text == "true":
-        is_optional = True;
+    css_selector = action_tag.attrib["selector"]
+    type = action_tag.attrib["type"]
+    do = action_tag.attrib["do"]
+
+    # if action_tag.find("optional").text == "true":
+    #     is_optional = True;
 
     if type == "button" and do == "click":
         execute_click(css_selector, is_optional)
@@ -78,7 +82,7 @@ def run_xml_suite(file):
     except:
         pass
 
-    for page in root.findall("page")
+    for page in root.findall("page"):
         if 'wait' in page.attrib:
             time.sleep(float(page.attrib["wait"]))
         for action in page.findall("action"):
@@ -88,7 +92,7 @@ def run_xml_suite(file):
 ##############################################################################################
 #
 ##############################################################################################
-run_xml_suite("")
+run_xml_suite("test-robots/test1.xml")
 
 
 
