@@ -89,3 +89,7 @@ ENV/
 .ropeproject
 
 .idea/
+
+# custom
+test-robots/mv-test-1.xml
+

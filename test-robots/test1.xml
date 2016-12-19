@@ -1,4 +1,4 @@
-<automation url="google.com">
+<automation url="http://google.com">
     <page wait="2">
         <action type="text" do="type" selector="#lst-ib">
             <value>summa</value>

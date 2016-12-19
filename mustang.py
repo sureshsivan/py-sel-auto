@@ -11,7 +11,15 @@ import csv
 import time
 
 # driver = webdriver.Firefox()
-driver = webdriver.Chrome(executable_path="C:\mydev\programs\selenium\chromedriver\chromedriver")
+
+# config for chrome
+chrome_options = webdriver.ChromeOptions()
+chrome_options.add_argument('--disable-extensions')
+chrome_options.add_argument('--start-maximized')
+chrome_options.add_argument('--lang=en_US')
+
+
+driver = webdriver.Chrome(executable_path="C:\mydev\programs\selenium\chromedriver\chromedriver", chrome_options=chrome_options)
 
 wait5 = WebDriverWait(driver, 5)
 
@@ -51,7 +59,7 @@ def execute_keystroke(selector, value, is_optional):
 ##############################################################################################
 #
 ##############################################################################################
-def process_actin_tag(action_tag):
+def process_action_tag(action_tag):
     is_optional = False
     # css_selector = action_tag.find("selector").text
     # type = action_tag.find("type").text
@@ -86,13 +94,13 @@ def run_xml_suite(file):
         if 'wait' in page.attrib:
             time.sleep(float(page.attrib["wait"]))
         for action in page.findall("action"):
-            process_actin_tag(action)
+            process_action_tag(action)
 
 
 ##############################################################################################
 #
 ##############################################################################################
-run_xml_suite("test-robots/test1.xml")
+run_xml_suite("test-robots/mv-test-1.xml")
 
 
 
