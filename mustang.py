@@ -40,6 +40,18 @@ def execute_click(selector, is_optional):
 ##############################################################################################
 #
 ##############################################################################################
+def execute_link_click_by_text(link_text, is_optional):
+    if is_optional:
+        el = driver.find_elements_by_link_text(link_text)[0]
+        if el.is_displayed():
+            el.click()
+    else:
+        el = wait5.until(EC.element_to_be_clickable((By.LINK_TEXT, link_text)))
+        el.click()
+
+##############################################################################################
+#
+##############################################################################################
 def execute_hidden_element_click(selector):
     el = driver.find_element_by_css_selector(selector)
     el.click()
@@ -74,7 +86,9 @@ def process_action_tag(action_tag):
 
     if type == "button" and do == "click":
         execute_click(css_selector, is_optional)
-    elif type == "link" and do == "click":
+    elif type == "link" and do == "clickbytext":
+        execute_link_click_by_text(action_tag.find("linktext"), is_optional)
+    elif type == "link" and do == "clickbyselector":
         execute_click(css_selector, is_optional)
     elif type == "text" and do == "keystroke":
         execute_keystroke(css_selector, action_tag.find("value").text, is_optional)
